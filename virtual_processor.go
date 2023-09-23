@@ -1,9 +1,11 @@
 package main
 
+import "fmt"
+
 func main() {
 	r1, r2 := NewRegistry(), NewRegistry()
 	r1.setByteNumber("00000001")
-	r2.setByteNumber("11111111")
+	r2.setByteNumber("01111111")
 	r1.printRegistry()
 	r2.printRegistry()
 	r3 := Sum(r1, r2)
@@ -34,6 +36,9 @@ func Sum(a *memoryRegistry, b *memoryRegistry) *memoryRegistry {
 		}
 		r3.setBit(i, s)
 		pCurrent = pNext
+	}
+	if pCurrent {
+		fmt.Println("Registry Overflow!!!")
 	}
 	return r3
 }
